@@ -38,7 +38,7 @@ tasks {
         publications {
             create<MavenPublication>("reposilite") {
                 from(components["java"])
-                artifactId = "Kore.kt"
+                artifactId = "mathfx"
                 groupId = group as String
                 version = version
             }
