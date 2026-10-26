@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("maven-publish")
 }
 
 group = "zip.jespersen"
@@ -17,6 +18,32 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks {
+    publishing {
+        repositories {
+            maven {
+                name = "Reposilite"
+                url = uri("https://maven.blo.by/releases")
+                credentials {
+                    username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
+                    password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
+                }
+                authentication {
+                    create<BasicAuthentication>("basic")
+                }
+            }
+        }
+        publications {
+            create<MavenPublication>("reposilite") {
+                from(components["java"])
+                artifactId = "Kore.kt"
+                groupId = group as String
+                version = version
+            }
+        }
+    }
 }
 
 java {

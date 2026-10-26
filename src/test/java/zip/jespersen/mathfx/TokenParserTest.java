@@ -3,11 +3,8 @@ package zip.jespersen.mathfx;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import zip.jespersen.mathfx.parser.TokenParser;
 import zip.jespersen.mathfx.tokens.MathToken;
 import zip.jespersen.mathfx.notations.Infixnotation;
 import zip.jespersen.mathfx.tokens.NumberToken;
@@ -15,6 +12,8 @@ import zip.jespersen.mathfx.tokens.OperationToken;
 import zip.jespersen.mathfx.tokens.BracketToken;
 import zip.jespersen.mathfx.types.Bracket;
 import zip.jespersen.mathfx.types.Operator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TokenParserTest {
 

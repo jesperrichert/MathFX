@@ -1,4 +1,4 @@
-package zip.jespersen.mathfx;
+package zip.jespersen.mathfx.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +11,7 @@ import zip.jespersen.mathfx.tokens.NumberToken;
 import zip.jespersen.mathfx.tokens.OperationToken;
 import zip.jespersen.mathfx.types.Bracket;
 import zip.jespersen.mathfx.types.Operator;
+import zip.jespersen.mathfx.utils.ShuntingYardStack;
 
 public final class TokenParser {
 

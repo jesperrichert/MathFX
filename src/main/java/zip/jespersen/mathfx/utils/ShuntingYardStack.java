@@ -1,4 +1,4 @@
-package zip.jespersen.mathfx;
+package zip.jespersen.mathfx.utils;
 
 import java.util.List;
 import java.util.Stack;

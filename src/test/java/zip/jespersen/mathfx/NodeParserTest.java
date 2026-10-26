@@ -1,11 +1,9 @@
 package zip.jespersen.mathfx;
 
-import githstatic org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import zip.jespersen.mathfx.notations.Infixnotation;
-import zip.jespersen.mathfx.types.ParserMode;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NodeParserTest {
 
@@ -56,108 +54,55 @@ public class NodeParserTest {
     private final Infixnotation ix45 = new Infixnotation("3.5 * 4 + 2.5");
     private final Infixnotation ix46 = new Infixnotation("(10.5 - 2.5) * 3 : 4");
     private final Infixnotation ix47 = new Infixnotation("25 + (6 : 2) * (4 - 1)");
-
-    @Test
-    public void testComputeNodeSHUNTING_YARD() throws Exception {
-        assertEquals(13.0, ix32.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(20.0, ix34.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(4.0, ix33.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-
-        assertEquals(6.0, ix44.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(24.0, ix28.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(20.0, ix31.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(11.0, ix29.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(20.0, ix30.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-
-        assertEquals(30.0, ix35.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(16.0, ix36.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(0.0, ix37.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(4.0, ix38.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(26.0, ix39.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(12.0, ix40.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(40.0, ix41.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(18.0, ix42.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(84.0, ix43.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(16.5, ix45.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(6.0, ix46.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(34.0, ix47.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(25.0, ix23.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(62.0, ix24.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(30.0, ix25.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(80.0, ix26.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(40.0, ix27.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(32.0, ix13.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(27.0, ix14.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(56.0, ix15.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(5.0, ix16.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(28.0, ix17.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(10.0, ix18.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(34.0, ix19.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(24.0, ix20.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(28.0, ix21.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(24.0, ix22.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(2.0, ix12.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(24.0, ix8.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(12.0, ix9.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(19.0, ix10.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(16.0, ix11.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(18, ix5.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(-8887.823, ix2.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(8, ix4.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(125.2, ix3.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(9132.223, Math.round(ix.toTree(ParserMode.SHUNTING_YARD).calculate() * 1000.0) / 1000.0, 0.0);
-        assertEquals(22.0, ix6.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-        assertEquals(23.0, ix7.toTree(ParserMode.SHUNTING_YARD).calculate(), 0.0);
-    }
-
+    
     @Test
     public void testComputeNodeRECURSIV() throws Exception {
-        assertEquals(24.0, ix28.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(11.0, ix29.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(20.0, ix30.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(20.0, ix31.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(13.0, ix32.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(4.0, ix33.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(20.0, ix34.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(30.0, ix35.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(16.0, ix36.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(0.0, ix37.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(4.0, ix38.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(26.0, ix39.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(12.0, ix40.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(40.0, ix41.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(18.0, ix42.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(84.0, ix43.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(6.0, ix44.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(16.5, ix45.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(6.0, ix46.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(34.0, ix47.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(25.0, ix23.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(62.0, ix24.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(30.0, ix25.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(80.0, ix26.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(40.0, ix27.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(32.0, ix13.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(27.0, ix14.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(56.0, ix15.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(5.0, ix16.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(28.0, ix17.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(10.0, ix18.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(34.0, ix19.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(24.0, ix20.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(28.0, ix21.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(24.0, ix22.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(2.0, ix12.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(24.0, ix8.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(12.0, ix9.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(19.0, ix10.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(16.0, ix11.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(18, ix5.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(-8887.823, ix2.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(8, ix4.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(125.2, ix3.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(9132.223, Math.round(ix.toTree(ParserMode.RECURSIV).calculate() * 1000.0) / 1000.0, 0.0);
-        assertEquals(22.0, ix6.toTree(ParserMode.RECURSIV).calculate(), 0.0);
-        assertEquals(23.0, ix7.toTree(ParserMode.RECURSIV).calculate(), 0.0);
+        assertEquals(24.0, ix28.toTree().calculate(), 0.0);
+        assertEquals(11.0, ix29.toTree().calculate(), 0.0);
+        assertEquals(20.0, ix30.toTree().calculate(), 0.0);
+        assertEquals(20.0, ix31.toTree().calculate(), 0.0);
+        assertEquals(13.0, ix32.toTree().calculate(), 0.0);
+        assertEquals(4.0, ix33.toTree().calculate(), 0.0);
+        assertEquals(20.0, ix34.toTree().calculate(), 0.0);
+        assertEquals(30.0, ix35.toTree().calculate(), 0.0);
+        assertEquals(16.0, ix36.toTree().calculate(), 0.0);
+        assertEquals(0.0, ix37.toTree().calculate(), 0.0);
+        assertEquals(4.0, ix38.toTree().calculate(), 0.0);
+        assertEquals(26.0, ix39.toTree().calculate(), 0.0);
+        assertEquals(12.0, ix40.toTree().calculate(), 0.0);
+        assertEquals(40.0, ix41.toTree().calculate(), 0.0);
+        assertEquals(18.0, ix42.toTree().calculate(), 0.0);
+        assertEquals(84.0, ix43.toTree().calculate(), 0.0);
+        assertEquals(6.0, ix44.toTree().calculate(), 0.0);
+        assertEquals(16.5, ix45.toTree().calculate(), 0.0);
+        assertEquals(6.0, ix46.toTree().calculate(), 0.0);
+        assertEquals(34.0, ix47.toTree().calculate(), 0.0);
+        assertEquals(25.0, ix23.toTree().calculate(), 0.0);
+        assertEquals(62.0, ix24.toTree().calculate(), 0.0);
+        assertEquals(30.0, ix25.toTree().calculate(), 0.0);
+        assertEquals(80.0, ix26.toTree().calculate(), 0.0);
+        assertEquals(40.0, ix27.toTree().calculate(), 0.0);
+        assertEquals(32.0, ix13.toTree().calculate(), 0.0);
+        assertEquals(27.0, ix14.toTree().calculate(), 0.0);
+        assertEquals(56.0, ix15.toTree().calculate(), 0.0);
+        assertEquals(5.0, ix16.toTree().calculate(), 0.0);
+        assertEquals(28.0, ix17.toTree().calculate(), 0.0);
+        assertEquals(10.0, ix18.toTree().calculate(), 0.0);
+        assertEquals(34.0, ix19.toTree().calculate(), 0.0);
+        assertEquals(24.0, ix20.toTree().calculate(), 0.0);
+        assertEquals(28.0, ix21.toTree().calculate(), 0.0);
+        assertEquals(24.0, ix22.toTree().calculate(), 0.0);
+        assertEquals(2.0, ix12.toTree().calculate(), 0.0);
+        assertEquals(24.0, ix8.toTree().calculate(), 0.0);
+        assertEquals(12.0, ix9.toTree().calculate(), 0.0);
+        assertEquals(19.0, ix10.toTree().calculate(), 0.0);
+        assertEquals(16.0, ix11.toTree().calculate(), 0.0);
+        assertEquals(18, ix5.toTree().calculate(), 0.0);
+        assertEquals(-8887.823, ix2.toTree().calculate(), 0.0);
+        assertEquals(8, ix4.toTree().calculate(), 0.0);
+        assertEquals(125.2, ix3.toTree().calculate(), 0.0);
+        assertEquals(9132.223, Math.round(ix.toTree().calculate() * 1000.0) / 1000.0, 0.0);
+        assertEquals(22.0, ix6.toTree().calculate(), 0.0);
+        assertEquals(23.0, ix7.toTree().calculate(), 0.0);
     }
 }

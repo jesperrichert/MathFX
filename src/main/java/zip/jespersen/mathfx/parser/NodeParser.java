@@ -1,6 +1,5 @@
-package zip.jespersen.mathfx;
+package zip.jespersen.mathfx.parser;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import zip.jespersen.mathfx.nodes.INode;
@@ -11,7 +10,7 @@ import zip.jespersen.mathfx.tokens.MathToken;
 import zip.jespersen.mathfx.tokens.NumberToken;
 import zip.jespersen.mathfx.tokens.OperationToken;
 import zip.jespersen.mathfx.types.Operator;
-import zip.jespersen.mathfx.types.Pair;
+import zip.jespersen.mathfx.utils.MathUtil;
 
 public final class NodeParser {
 
@@ -20,39 +19,7 @@ public final class NodeParser {
     public NodeParser(List<MathToken> tokens) {
         this.tokens = tokens;
     }
-
-    public INode computeNodeWithShuntingYard() {
-        List<MathToken> shuntingTokens =
-                TokenParser.computeShuntingYard(tokens);
-
-        Stack<INode> stack = new Stack<>();
-
-        for (MathToken token : shuntingTokens) {
-            if (MathUtil.isToken(NumberToken.class, token)) {
-                NumberToken number =
-                        MathUtil.toToken(NumberToken.class, token);
-                stack.push(new NumberNode(number.getNumber()));
-
-            } else if (MathUtil.isToken(OperationToken.class, token)) {
-                OperationToken operator =
-                        MathUtil.toToken(OperationToken.class, token);
-
-                INode right = stack.pop();
-                INode left = stack.pop();
-
-                stack.push(new OperationNode(operator.getOperator())
-                        .setLeftNode(left)
-                        .setRightNode(right));
-            }
-        }
-
-        if (stack.size() != 1) {
-            throw new IllegalArgumentException("Invalid expression");
-        }
-
-        return stack.pop();
-    }
-
+    
     public INode computeNodeRecursive() throws Exception {
         RecursiveDescent recursiveDescent = new RecursiveDescent();
         return recursiveDescent.produceNode(tokens);
