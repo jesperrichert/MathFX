@@ -13,8 +13,25 @@ import zip.jespersen.mathfx.types.Bracket;
 import zip.jespersen.mathfx.types.Operator;
 import zip.jespersen.mathfx.utils.ShuntingYardStack;
 
+/**
+ * Utility class for converting math expressions into {@link MathToken}s
+ * and for reordering tokens with the shunting-yard algorithm.
+ */
 public final class TokenParser {
 
+
+    /**
+     * Splits an infix expression into tokens.
+     * <p>
+     * Whitespace is ignored. Matching brackets receive a shared id. A leading
+     * {@code +} or {@code -} at the start of the expression or after an opening
+     * bracket or operator is treated as the sign of the following number.
+     * Both {@code .} and {@code ,} are accepted as decimal separator.
+     *
+     * @param notation the expression in infix notation
+     * @return the list of tokens in the order they appear in the expression
+     * @throws NumberFormatException if a number in the expression cannot be parsed
+     */
     public static List<MathToken> parseMathTokens(String notation) {
         List<MathToken> tokens = new ArrayList<>();
         HashMap<Integer, String> bracketTokenMatcher = new HashMap<>();
@@ -96,6 +113,15 @@ public final class TokenParser {
 
     }
 
+    /**
+     * Converts tokens from infix order into postfix order
+     * using the shunting-yard algorithm.
+     *
+     * @param tokens the tokens in infix order
+     * @return the tokens in postfix order
+     * @throws IllegalArgumentException if the expression is invalid,
+     *                                  e.g. because of mismatched brackets
+     */
     public static List<MathToken> computeShuntingYard(List<MathToken> tokens) throws IllegalArgumentException {
         List<MathToken> output = new ArrayList<>();
         ShuntingYardStack stack = new ShuntingYardStack();

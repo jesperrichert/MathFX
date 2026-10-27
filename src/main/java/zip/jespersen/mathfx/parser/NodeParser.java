@@ -12,14 +12,31 @@ import zip.jespersen.mathfx.tokens.OperationToken;
 import zip.jespersen.mathfx.types.Operator;
 import zip.jespersen.mathfx.utils.MathUtil;
 
+/**
+ * Parses a list of {@link MathToken}s into a tree of {@link INode}s
+ * using a recursive descent parser.
+ */
 public final class NodeParser {
 
-    private List<MathToken> tokens;
+    private final List<MathToken> tokens;
 
+    /**
+     * Creates a new node parser for the given tokens.
+     *
+     * @param tokens the tokens in infix order to parse
+     */
     public NodeParser(List<MathToken> tokens) {
         this.tokens = tokens;
     }
-    
+
+    /**
+     * Parses the tokens into a node tree, respecting operator precedence
+     * and brackets.
+     *
+     * @return the root node of the resulting tree
+     * @throws Exception if the tokens do not form a valid expression,
+     *                   e.g. because of a missing closing bracket
+     */
     public INode computeNodeRecursive() throws Exception {
         RecursiveDescent recursiveDescent = new RecursiveDescent();
         return recursiveDescent.produceNode(tokens);
